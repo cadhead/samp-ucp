@@ -1,0 +1,30 @@
+<footer class="footer mt-5">
+  <div class="content has-text-centered">
+    <p>
+      Made with
+      <i style="color: red" class="fas fa-heart"></i>
+      by <a href="https://github.com/cadhead">Andrey Mironenko</a>.
+      The source code is licensed
+      <a href="https://opensource.org/licenses/ISC">ISC</a>.
+    </p>
+  </div>
+</footer>
+<script defer src="/fontawesome/js/all.min.js"></script>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', () => {
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    if ($navbarBurgers.length > 0) {
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
+  });
+</script>
+</body>

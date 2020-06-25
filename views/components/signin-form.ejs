@@ -1,0 +1,38 @@
+<form method="POST" class="card">
+  <header class="card-header">
+    <p class="card-header-title">
+      Log in
+    </p>
+  </header>
+  <div class="card-content">
+    <%- include("./error", { messages: authMessages }) %>
+    <div id="login-from" class="field">
+      <p class="control has-icons-left has-icons-right">
+        <input class="input" type="text" name="username" placeholder="Username">
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control has-icons-left has-icons-right">
+        <input class="input" type="password" name="password" placeholder="Password" autocomplete>
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+      </p>
+    </div>
+    <div class="field is-grouped is-grouped-centered">
+      <p class="control">
+        <button class="button is-primary">
+          Log in
+        </button>
+      </p>
+      <p class="control">
+        <a href="/ucp/signup" class="button is-light">
+          I do not have an account
+        </a>
+      </p>
+    </div>
+  </div>
+</form>
