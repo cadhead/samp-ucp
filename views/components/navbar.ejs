@@ -20,6 +20,12 @@
       <a href="?forum.mysite.com" class="navbar-item">
         Forum
       </a>
+
+      <% if (profile.name) { %>
+        <a href="/ucp" class="navbar-item">
+          Control Panel
+        </a>
+        <% } %>
     </div>
 
     <div class="navbar-end">
