@@ -15,8 +15,8 @@ class Profile {
 
   pLevel = 0;
 
-  fill() {
-    console.log('Hello');
+  fill(config) {
+    Object.assign(this, config);
   }
 }
 
