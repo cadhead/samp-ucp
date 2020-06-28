@@ -14,7 +14,7 @@ class PageController {
   }
 
   render(req, res, next) {
-    req.profile = req.session.profile || this.page.profile;
+    this.update(req);
 
     res.render(this.page.template, {
       title: this.page.title,
@@ -28,6 +28,10 @@ class PageController {
 
   setTitle(title) {
     this.page.title = title;
+  }
+
+  update(req) {
+    this.page.profile = req.session.profile;
   }
 
   static checkUserAccess(req, res, next) {
@@ -50,7 +54,11 @@ class PageController {
         accessMessages.notAccess
       );
 
-      return res.redirect('/');
+      return res.render('error', {
+        title: `Can't access to ${this.page.title}...`,
+        profile: this.page.profile,
+        message: req.flash('accessRequiredMessage')
+      });
     }
 
     return next();

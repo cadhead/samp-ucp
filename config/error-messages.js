@@ -5,7 +5,7 @@ const signinMessages = {
 };
 
 const accessMessages = {
-  notAccess: 'You do not have the required permissions to view or read this content.',
+  notAccess: 'You do not authenticated view or read this content.',
   notMember: 'Only members can access to view or read this content.',
   notAdmin: 'Only admins can access to view or read this content.'
 };
