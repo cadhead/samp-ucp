@@ -20,10 +20,8 @@ class DatabaseService {
       this.pool.getConnection((err, connection) => {
         if (err) throw reject(err);
 
-        connection.query(sql, data, (_err, result) => {
+        connection.query(sql, data, (result) => {
           connection.release();
-
-          if (_err) throw reject(_err);
 
           resolve(result);
         });
