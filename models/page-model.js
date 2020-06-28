@@ -1,7 +1,7 @@
 const Profile = require('./profile-model');
 
 class Route {
-  title = '';
+  $title = '';
 
   template = 'index';
 
@@ -13,6 +13,16 @@ class Route {
 
   constructor(config) {
     Object.assign(this, config);
+  }
+
+  set title(newVal) {
+    this.$title = newVal;
+
+    return newVal;
+  }
+
+  get title() {
+    return this.$title;
   }
 }
 
