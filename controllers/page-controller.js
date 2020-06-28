@@ -1,5 +1,6 @@
 const Page = require('../models/page-model');
 const checkUserAuthenticated = require('../middlewares/userIsAuthenticated');
+const { accessMessages } = require('../config/error-messages');
 
 function execCallback(cb) {
   if (cb && typeof cb === 'function') {
@@ -13,6 +14,8 @@ class PageController {
   }
 
   render(req, res, next) {
+    req.profile = req.session.profile || this.page.profile;
+
     res.render(this.page.template, {
       title: this.page.title,
       profile: this.page.profile,
@@ -44,7 +47,7 @@ class PageController {
     if (group < this.page.access) {
       req.flash(
         'accessRequiredMessage',
-        'You do not have the required permissions to view or read this content.'
+        accessMessages.notAccess
       );
 
       return res.redirect('/');

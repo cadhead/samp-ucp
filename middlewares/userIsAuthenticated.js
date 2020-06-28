@@ -1,3 +1,5 @@
+const { accessMessages } = require('../config/error-messages');
+
 module.exports = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
@@ -5,7 +7,7 @@ module.exports = (req, res, next) => {
 
   req.flash(
     'authMessage',
-    'You do not have the required permissions to view or read this content.'
+    accessMessages.notAccess
   );
 
   return res.redirect('/signin');

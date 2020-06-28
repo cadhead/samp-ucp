@@ -1,24 +1,5 @@
 const User = require('../../controllers/user-controller');
-
-const signinMessages = {
-  ok: 'Successfully logged in.',
-  wrongPass: 'Incorrect password.',
-  notExist: 'User not exist. You can register it yourself!'
-};
-
-function getSigninMessage(res) {
-  switch (res) {
-    case null: {
-      return signinMessages.notExist;
-    }
-    case false: {
-      return signinMessages.wrongPass;
-    }
-    default: {
-      return signinMessages.ok;
-    }
-  }
-}
+const { getSigninMessage } = require('../error-messages');
 
 module.exports = {
   config: {
