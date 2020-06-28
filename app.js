@@ -9,7 +9,7 @@ const path = require('path');
 const logger = require('morgan');
 
 const app = express();
-require('./database/database-schema')();
+// require('./database/database-schema')();
 require('./config/passport')(passport);
 
 app.set('views', path.join(__dirname, 'views'));

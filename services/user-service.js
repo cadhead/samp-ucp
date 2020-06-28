@@ -10,9 +10,9 @@ const db = require('../database');
 
 function setupCreationQuery(user) {
   return {
-    sql: 'INSERT INTO `accounts`'
-      + '(`Username`, `Email`, `PassHash`, `PassSalt`,'
-      + '`RegisterDate`, `LoginDate`, `IP`, `PlayerGroup`,'
+    sql: 'INSERT INTO `accounts` '
+      + '(`Username`, `Email`, `PassHash`, `PassSalt`, '
+      + '`RegisterDate`, `LoginDate`, `IP`, `PlayerGroup`, '
       + '`ALevel`, `PLevel`) VALUES (?,?,?,?,?,?,?,?,?,?)',
 
     data: [

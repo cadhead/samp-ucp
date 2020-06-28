@@ -16,7 +16,7 @@ function getQueryCreateTable(type) {
         + '`IGIP` varchar(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL, '
         + "`PlayerGroup` int(11) NOT NULL DEFAULT '0', "
         + "`ALevel` int(11) NOT NULL DEFAULT '0', "
-        + "`PLevel` int(11) NOT NULL DEFAULT '0', PRIMARY KEY(`ID`) "
+        + "`PLevel` int(11) NOT NULL DEFAULT '0') PRIMARY KEY(`ID`) "
         + 'ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;';
     }
     default: return null;
