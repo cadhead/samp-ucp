@@ -1,5 +1,5 @@
-const User = require("../models/user-model");
-const { passwordCompare } = require("../lib/encrypt");
+const User = require('../models/user-model');
+const { passwordCompare } = require('../lib/encrypt');
 
 class UserController {
   constructor(userData) {
@@ -22,10 +22,8 @@ class UserController {
       }
 
       return result;
-    })
+    });
   }
-
-  
 }
 
 module.exports = UserController;
