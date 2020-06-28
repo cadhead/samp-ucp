@@ -15,7 +15,7 @@ class Profile {
 
   pLevel = 0;
 
-  fill(config) {
+  constructor(config) {
     Object.assign(this, config);
   }
 }

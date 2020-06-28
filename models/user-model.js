@@ -1,35 +1,33 @@
 const userService = require('../services/user-service');
-
-/**
- * @private
- * Setup's user config
- *
- * @param {User} ctx
- * @param {Object} config
- */
-
-function setup(ctx, config) {
-  Object.assign(ctx, {
-    Username: '',
-    Email: '',
-    PassHash: '',
-    PassSalt: '',
-    RegisterDate: 0,
-    LoginDate: 0,
-    IP: '0.0.0.0',
-    PlayerGroup: 0,
-    ALevel: 0,
-    PLevel: 0
-  }, config);
-}
+const Profile = require('./profile-model');
 
 class User {
+  Username = '';
+
+  Email = '';
+
+  PassHash = '';
+
+  PassSalt = '';
+
+  RegisterDate = 0;
+
+  LoginDate = 0;
+
+  IP = '0.0.0.0';
+
+  PlayerGroup = 0;
+
+  ALevel = 0;
+
+  PLevel = 0;
+
   constructor(config) {
-    setup(this, config);
+    Object.assign(this, config);
   }
 
   static getProfile(user) {
-    return {
+    return new Profile({
       name: user.Username,
       email: user.Email,
       registerDate: user.RegisterDate,
@@ -38,7 +36,7 @@ class User {
       group: user.PlayerGroup,
       aLevel: user.ALevel,
       pLevel: user.PLevel
-    };
+    });
   }
 
   // static findAll(callback) {
