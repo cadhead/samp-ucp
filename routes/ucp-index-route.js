@@ -1,10 +1,13 @@
 const router = require('express').Router();
+const Page = require('../controllers/page-controller');
 
-router.get('/', (req, res) => {
-  res.render('index', {
-    profile: req.session.profile,
-    title: 'User Control Panel'
-  });
+const ucpPage = new Page({
+  title: 'User Control Panel',
+  access: 1
+});
+
+router.get('/', Page.checkUserAccess.bind(ucpPage), (req, res) => {
+  ucpPage.render(req, res);
 });
 
 module.exports = router;

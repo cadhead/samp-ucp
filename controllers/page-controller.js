@@ -19,7 +19,6 @@ class PageController {
     res.render(this.page.template, {
       title: this.page.title,
       profile: this.page.profile,
-      access: this.page.access,
       ...this.page.locals
     });
 
@@ -31,7 +30,7 @@ class PageController {
   }
 
   update(req) {
-    this.page.profile = req.session.profile;
+    if (req.session.profile) this.page.profile = req.session.profile;
   }
 
   static checkUserAccess(req, res, next) {
@@ -41,7 +40,9 @@ class PageController {
 
     if (!group) {
       switch (this.page.access) {
-        case 0: return next();
+        case 0: {
+          return next();
+        }
         default: {
           return checkUserAuthenticated(req, res, next);
         }
@@ -49,15 +50,10 @@ class PageController {
     }
 
     if (group < this.page.access) {
-      req.flash(
-        'accessRequiredMessage',
-        accessMessages.notAccess
-      );
-
       return res.render('error', {
         title: `Can't access to ${this.page.title}...`,
         profile: this.page.profile,
-        message: req.flash('accessRequiredMessage')
+        message: accessMessages.notAccess
       });
     }
 

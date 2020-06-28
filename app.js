@@ -6,7 +6,6 @@ const passport = require('passport');
 const helmet = require('helmet');
 
 const path = require('path');
-const logger = require('morgan');
 
 const app = express();
 // require('./database/database-schema')();
@@ -16,8 +15,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.set('trust proxy', true);
-
-app.use(logger('dev'));
 
 app.use(helmet());
 
@@ -41,10 +38,8 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
-
 require('./routes')(app);
 
 module.exports = app;
