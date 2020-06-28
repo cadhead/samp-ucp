@@ -1,13 +1,17 @@
 const router = require('express').Router();
 const passport = require('passport');
 const User = require('../controllers/user-controller');
+const Page = require('../controllers/page-controller');
+
+const signinPage = new Page({
+  title: 'Sign in',
+  template: 'signin'
+});
 
 router.get('/', (req, res) => {
   res.locals.authMessages = req.flash('authMessage');
 
-  const profile = req.session.profile || {};
-
-  res.render('signin', { profile, title: 'Sign in' });
+  signinPage.render(req, res);
 });
 
 router.post('/', passport.authenticate('local-signin', {
@@ -19,4 +23,5 @@ router.post('/', passport.authenticate('local-signin', {
 
   res.redirect('/ucp');
 });
+
 module.exports = router;

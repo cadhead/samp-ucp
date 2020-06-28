@@ -1,7 +1,7 @@
 <%- include("./components/header", { profile }) %>
   <div class="container">
     <hr>
-    <%- !profile.name
+    <%- !profile.group
       ? include("./components/signin-form", { authMessages })
       : include("./components/error", {
         messages: [profile.name + ", you have already logged in!"] 
