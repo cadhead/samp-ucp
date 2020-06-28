@@ -1,9 +1,8 @@
-const { Strategy } = require("passport-local");
+const { Strategy } = require('passport-local');
 
-const User = require("../../controllers/user-controller");
-const UserService = require("../../services/user-service");
+const UserService = require('../../services/user-service');
 
-const localSignin = require("./local-signin");
+const localSignin = require('./local-signin');
 
 module.exports = (passport) => {
   passport.serializeUser((user, done) => {
@@ -17,11 +16,11 @@ module.exports = (passport) => {
       })
       .catch(err => {
         throw err;
-      })
+      });
   });
 
-  passport.use("local-signin", new Strategy(
+  passport.use('local-signin', new Strategy(
     localSignin.config,
     localSignin.callback
   ));
-}
+};

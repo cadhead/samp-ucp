@@ -1,15 +1,29 @@
-const User = require("../../controllers/user-controller");
+const User = require('../../controllers/user-controller');
 
 const signinMessages = {
-  ok: "Successfully logged in.",
-  wrongPass: "Incorrect password.",
-  notExist: "User not exist. You can register it yourself!"
+  ok: 'Successfully logged in.',
+  wrongPass: 'Incorrect password.',
+  notExist: 'User not exist. You can register it yourself!'
+};
+
+function getSigninMessage(res) {
+  switch (res) {
+    case null: {
+      return signinMessages.notExist;
+    }
+    case false: {
+      return signinMessages.wrongPass;
+    }
+    default: {
+      return signinMessages.ok;
+    }
+  }
 }
 
 module.exports = {
   config: {
-    usernameField: "username",
-    passwordField: "password",
+    usernameField: 'username',
+    passwordField: 'password',
     passReqToCallback: true
   },
 
@@ -20,25 +34,9 @@ module.exports = {
 
     user.login(password)
       .then(res => {
-        let message = req.flash("authMessage", getSigninMessage(res));
+        let message = req.flash('authMessage', getSigninMessage(res));
 
         return done(null, res, { message });
       });
   }
-}
-
-function getSigninMessage(res) {
-  switch(res) {
-    case null: {
-      return signinMessages.notExist;
-
-    }
-    case false: {
-      return signinMessages.wrongPass;
-
-    }
-    default: {
-      return signinMessages.ok
-    };
-  }
-}
+};

@@ -1,7 +1,10 @@
 class Route {
-  title = "";
-  template = "index";
+  title = '';
+
+  template = 'index';
+
   access = 0;
+
   profile = { };
 }
 

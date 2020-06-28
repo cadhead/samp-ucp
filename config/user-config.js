@@ -1,29 +1,29 @@
 module.exports = {
   groups: {
-    guests: { id: 0, name: "Guests" },
+    guests: { id: 0, name: 'Guests' },
     players: {
       id: 1,
-      name: "Players"
+      name: 'Players'
     },
     premium: {
       id: 2,
-      name: "Premium"
+      name: 'Premium'
     },
     supports: {
       id: 3,
-      name: "Supports team"
+      name: 'Supports team'
     },
     admins: {
       id: 4,
-      name: "Admins team"
+      name: 'Admins team'
     },
     developers: {
       id: 5,
-      name: "Developers"
+      name: 'Developers'
     },
     management: {
       id: 6,
-      name: "Management"
+      name: 'Management'
     }
   }
-}
+};

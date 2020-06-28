@@ -1,4 +1,7 @@
+const userConfig = require('./user-config');
+const database = require('./database-config');
+
 module.exports = {
-  userConfig: require("./user-config"),
-  database: require("./database-config")
-}
+  userConfig,
+  database
+};

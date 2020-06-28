@@ -1,4 +1,27 @@
-const userService = require("../services/user-service");
+const userService = require('../services/user-service');
+
+/**
+ * @private
+ * Setup's user config
+ *
+ * @param {User} ctx
+ * @param {Object} config
+ */
+
+function setup(ctx, config) {
+  Object.assign(ctx, {
+    Username: '',
+    Email: '',
+    PassHash: '',
+    PassSalt: '',
+    RegisterDate: 0,
+    LoginDate: 0,
+    IP: '0.0.0.0',
+    PlayerGroup: 0,
+    ALevel: 0,
+    PLevel: 0
+  }, config);
+}
 
 class User {
   constructor(config) {
@@ -15,12 +38,12 @@ class User {
       group: user.PlayerGroup,
       aLevel: user.ALevel,
       pLevel: user.PLevel
-    }
+    };
   }
 
-  static findAll(callback) {
+  // static findAll(callback) {
 
-  }
+  // }
 
   static findOneById(id, callback) {
     return userService.findUserById(id)
@@ -29,7 +52,7 @@ class User {
       })
       .catch(err => {
         throw err;
-      })
+      });
   }
 
   static findOneByUsername(username, callback) {
@@ -39,7 +62,7 @@ class User {
       })
       .catch(err => {
         throw err;
-      })
+      });
   }
 
   static createOne(user, callback) {
@@ -49,39 +72,16 @@ class User {
       })
       .catch(err => {
         throw err;
-      })
+      });
   }
 
-  static updateOne(user) {
+  // static updateOne(user) {
 
-  }
+  // }
 
-  static deleteOne(user) {
+  // static deleteOne(user) {
 
-  }
-}
-
-/**
- * @private
- * Setup's user config
- * 
- * @param {User} ctx
- * @param {Object} config
- */
-
-function setup(ctx, config) {
-  Object.assign(ctx, {
-    Username: "",
-    Email: "",
-    PassHash: "",
-    PassSalt: "",
-    RegisterDate: 0,
-    LoginDate: 0,
-    IP: "0.0.0.0",
-    PlayerGroup: 0,
-    ALevel: 0,
-    PLevel: 0
-  }, config);
+  // }
 }
 
 module.exports = User;

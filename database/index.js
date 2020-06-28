@@ -1,5 +1,9 @@
-const mysql = require("mysql");
-const config = require("../config").database;
+const mysql = require('mysql');
+const config = require('../config').database;
+
+function execQuery(cb) {
+  return new Promise((resolve, reject) => cb(resolve, reject));
+}
 
 class DatabaseService {
   constructor() {
@@ -12,27 +16,27 @@ class DatabaseService {
   }
 
   query(sql, data) {
-    return this.__execQuery((resolve, reject) => {
+    return execQuery((resolve, reject) => {
       this.pool.getConnection((err, connection) => {
         if (err) throw reject(err);
 
-        connection.query(sql, data, (err, result) => {
+        connection.query(sql, data, (_err, result) => {
           connection.release();
 
-          if (err) throw reject(err);
-          
+          if (_err) throw reject(_err);
+
           resolve(result);
-        })
+        });
       });
     });
   }
 
   destroyConnection() {
-    this.pool.end(err => err ? console.error(err) : true);
-  }
+    this.pool.end(err => {
+      if (err) throw err;
 
-  __execQuery(cb) {
-    return new Promise((resolve, reject) => cb(resolve, reject));
+      return true;
+    });
   }
 }
 
