@@ -21,16 +21,16 @@
         Forum
       </a>
 
-      <% if (profile.name) { %>
+      <% if (profile.group) { %>
         <a href="/ucp" class="navbar-item">
           Control Panel
         </a>
-        <% } %>
+      <% } %>
     </div>
 
     <div class="navbar-end">
       <div class="navbar-item">
-        <% if (!profile.name) { %>
+        <% if (!profile.group) { %>
         <div class="buttons">
           <a href="/signup" class="button is-primary">
             <strong>Sign up</strong>
