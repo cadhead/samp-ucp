@@ -11,6 +11,8 @@ class Route {
     name: 'Guest'
   });
 
+  locals = { };
+
   constructor(config) {
     Object.assign(this, config);
   }
