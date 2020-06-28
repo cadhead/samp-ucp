@@ -6,20 +6,8 @@ const signinRouter = require('./ucp-signin-route');
 // const signupRouter = require('./ucp-signup-route');
 
 module.exports = app => {
-  const isAuthenticated = (req, res, next) => {
-    if (req.isAuthenticated()) {
-      return next();
-    }
-
-    req.flash(
-      'authMessage',
-      'You do not have the required permissions to view or read this content.'
-    );
-    return res.redirect('/signin');
-  };
-
   app.use('/', indexRouter);
-  app.use('/ucp', isAuthenticated, ucpRouter);
+  app.use('/ucp', ucpRouter);
   app.use('/signin', signinRouter);
   // app.use("/signup", signupRouter);
 
