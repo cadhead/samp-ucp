@@ -1,3 +1,5 @@
+const Profile = require('./profile-model');
+
 class Route {
   title = '';
 
@@ -5,7 +7,13 @@ class Route {
 
   access = 0;
 
-  profile = { };
+  profile = new Profile({
+    name: 'Guest'
+  });
+
+  constructor(config) {
+    Object.assign(this, config);
+  }
 }
 
 module.exports = Route;
