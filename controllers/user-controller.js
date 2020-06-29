@@ -1,5 +1,9 @@
 const User = require('../models/user-model');
-const { passwordCompare } = require('../lib/encrypt');
+const {
+  passwordCompare,
+  generateSalt,
+  encryptPassword
+} = require('../lib/encrypt');
 
 class UserController {
   constructor(userData) {
@@ -8,6 +12,39 @@ class UserController {
 
   getProfile() {
     return User.getProfile(this.user);
+  }
+
+  static createUser(params) {
+    let {
+      username,
+      email,
+      password,
+      ip
+    } = params;
+    let salt = generateSalt(16);
+    let hash = encryptPassword(password, salt);
+
+    const user = new User({
+      Username: username,
+      Email: email,
+      PassHash: hash,
+      PassSalt: salt,
+      RegisterDate: Math.round((new Date()).getTime() / 1000),
+      LoginDate: Math.round((new Date()).getTime() / 1000),
+      IP: ip
+    });
+
+    return User.findOneByUsername(user.Username, result => {
+      if (result) {
+        return false;
+      }
+
+      return User.createOne(user, err => {
+        if (err) return null;
+
+        return true;
+      });
+    });
   }
 
   login(password) {
