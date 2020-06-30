@@ -4,6 +4,7 @@ const {
   generateSalt,
   encryptPassword
 } = require('../lib/encrypt');
+const { groups } = require('../config/user-config');
 
 class UserController {
   constructor(userData) {
@@ -29,6 +30,7 @@ class UserController {
       Email: email,
       PassHash: hash,
       PassSalt: salt,
+      PlayerGroup: groups.players.id,
       RegisterDate: Math.round((new Date()).getTime() / 1000),
       LoginDate: Math.round((new Date()).getTime() / 1000),
       IP: ip
@@ -42,7 +44,7 @@ class UserController {
       return User.createOne(user, err => {
         if (err) return null;
 
-        return true;
+        return user;
       });
     });
   }

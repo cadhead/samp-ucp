@@ -39,7 +39,7 @@ function getSignupMessage(res) {
       return signupMessages.alreadyExist;
     }
     default: {
-      return signinMessages.ok;
+      return signupMessages.ok;
     }
   }
 }

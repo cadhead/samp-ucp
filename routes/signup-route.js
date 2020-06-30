@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
-const User = require('../controllers/user-controller');
 const Page = require('../controllers/page-controller');
+const User = require('../controllers/user-controller');
 
 const signupPage = new Page({
   title: 'Sign up',
@@ -20,7 +20,6 @@ router.post('/', passport.authenticate('local-signup', {
 }), (req, res) => {
   req.session.user = new User(req.user);
   req.session.profile = req.session.user.getProfile();
-
   res.redirect('/ucp');
 });
 

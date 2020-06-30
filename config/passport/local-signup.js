@@ -11,7 +11,7 @@ module.exports = {
   callback(req, username, password, done) {
     User.createUser({
       username,
-      email: req.email,
+      email: req.body.email,
       password,
       ip: req.ip
     })

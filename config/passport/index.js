@@ -1,23 +1,15 @@
 const { Strategy } = require('passport-local');
 
-const UserService = require('../../services/user-service');
-
 const localSignin = require('./local-signin');
 const localSignup = require('./local-signup');
 
 module.exports = (passport) => {
   passport.serializeUser((user, done) => {
-    done(null, user.ID);
+    done(null, user);
   });
 
-  passport.deserializeUser((id, done) => {
-    return UserService.findUserById(id)
-      .then(result => {
-        return done(null, result);
-      })
-      .catch(err => {
-        throw err;
-      });
+  passport.deserializeUser((user, done) => {
+    done(null, user);
   });
 
   passport.use('local-signin', new Strategy(
