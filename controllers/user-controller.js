@@ -49,12 +49,12 @@ class UserController {
     });
   }
 
-  login(password) {
-    return User.findOneByUsername(this.user.Username, result => {
+  static loginUser(username, password) {
+    return User.findOneByUsername(username, result => {
       if (!result) return null;
 
-      this.user = result;
-      const { PassHash, PassSalt } = this.user;
+      const user = result;
+      const { PassHash, PassSalt } = user;
 
       if (!passwordCompare(password, PassHash, PassSalt)) {
         return false;

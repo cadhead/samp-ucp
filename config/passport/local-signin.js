@@ -9,11 +9,7 @@ module.exports = {
   },
 
   callback(req, username, password, done) {
-    let user = new User({
-      Username: username
-    });
-
-    user.login(password)
+    User.loginUser(username, password)
       .then(res => {
         let message = req.flash('authMessage', getSigninMessage(res));
 
