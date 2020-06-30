@@ -3,6 +3,7 @@ const { Strategy } = require('passport-local');
 const UserService = require('../../services/user-service');
 
 const localSignin = require('./local-signin');
+const localSignup = require('./local-signup');
 
 module.exports = (passport) => {
   passport.serializeUser((user, done) => {
@@ -22,5 +23,10 @@ module.exports = (passport) => {
   passport.use('local-signin', new Strategy(
     localSignin.config,
     localSignin.callback
+  ));
+
+  passport.use('local-signup', new Strategy(
+    localSignup.config,
+    localSignup.callback
   ));
 };

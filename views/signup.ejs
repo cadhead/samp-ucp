@@ -1,0 +1,12 @@
+<%- include("./components/header", { profile }) %>
+  <div class="container">
+    <hr>
+    <%- !profile.group
+      ? include("./components/signup-form", { authMessages })
+      : include("./components/error", {
+        messages: [profile.name + ", you have already logged in!"] 
+      })
+    %>
+  </div>
+<%- include("./components/footer") %>
+</html>

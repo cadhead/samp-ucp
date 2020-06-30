@@ -2,14 +2,14 @@ const createError = require('http-errors');
 
 const indexRouter = require('./index-route');
 const ucpRouter = require('./ucp-index-route');
-const signinRouter = require('./ucp-signin-route');
-// const signupRouter = require('./ucp-signup-route');
+const signinRouter = require('./signin-route');
+const signupRouter = require('./signup-route');
 
 module.exports = app => {
   app.use('/', indexRouter);
   app.use('/ucp', ucpRouter);
   app.use('/signin', signinRouter);
-  // app.use("/signup", signupRouter);
+  app.use('/signup', signupRouter);
 
   app.use((req, res, next) => {
     next(createError(404));

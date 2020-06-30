@@ -9,7 +9,7 @@ module.exports = {
   },
 
   callback(req, username, password, done) {
-    User.create({
+    User.createUser({
       username,
       email: req.email,
       password,
