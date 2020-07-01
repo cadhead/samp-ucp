@@ -12,13 +12,7 @@ module.exports = {
   callback(req, username, password, done) {
     signupValidate(req.body, (errors => {
       if (errors) {
-        let errorMessages = [];
-
-        Object.values(errors).forEach(err => {
-          errorMessages.push(err.message);
-        });
-
-        let message = req.flash('authMessage', errorMessages);
+        let message = req.flash('authMessage', errors);
 
         done(null, false, { message });
       } else {
