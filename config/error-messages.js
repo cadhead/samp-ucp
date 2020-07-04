@@ -1,5 +1,3 @@
-const niv = require('node-input-validator');
-
 const signinMessages = {
   ok: 'Successfully logged in.',
   wrongPass: 'Incorrect password.',
@@ -17,10 +15,6 @@ const accessMessages = {
   notMember: 'Only members can access to view or read this content.',
   notAdmin: 'Only admins can access to view or read this content.'
 };
-
-niv.extendMessages({
-  'server-terms-accept': 'The server terms of service must be accepted.'
-}, 'en');
 
 function getSigninMessage(res) {
   switch (res) {
@@ -50,8 +44,17 @@ function getSignupMessage(res) {
   }
 }
 
+const niv = require('node-input-validator');
+niv.niceNames({
+  username: 'username',
+  email: 'E-mail',
+  password: 'password',
+  'server-terms-accept': 'server terms'
+});
+
 module.exports = {
   getSigninMessage,
   accessMessages,
-  getSignupMessage
+  getSignupMessage,
+  Validator: niv.Validator
 };
