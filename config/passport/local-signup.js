@@ -1,6 +1,6 @@
 const User = require('../../controllers/user-controller');
 const { getSignupMessage } = require('../error-messages');
-const signupValidate = require('../../lib/signup-validate');
+const { Validator } = require('../../lib/signup');
 
 module.exports = {
   config: {
@@ -10,7 +10,7 @@ module.exports = {
   },
 
   callback(req, username, password, done) {
-    signupValidate(req.body, (errors => {
+    Validator(req.body, (errors => {
       if (errors) {
         let message = req.flash('authMessage', errors);
 
