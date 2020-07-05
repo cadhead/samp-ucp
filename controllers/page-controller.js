@@ -1,6 +1,5 @@
 const Page = require('../models/page-model');
-const checkUserAuthenticated = require('../middlewares/userIsAuthenticated');
-const { accessMessages } = require('../config/error-messages');
+const userIsHasAccess = require('../middlewares/userIsHasAccess');
 
 function execCallback(cb) {
   if (cb && typeof cb === 'function') {
@@ -34,30 +33,7 @@ class PageController {
   }
 
   static checkUserAccess(req, res, next) {
-    const group = req.session.profile
-      ? req.session.profile.group
-      : null;
-
-    if (!group) {
-      switch (this.page.access) {
-        case 0: {
-          return next();
-        }
-        default: {
-          return checkUserAuthenticated(req, res, next);
-        }
-      }
-    }
-
-    if (group < this.page.access) {
-      return res.render('error', {
-        title: `Can't access to ${this.page.title}...`,
-        profile: this.page.profile,
-        message: accessMessages.notAccess
-      });
-    }
-
-    return next();
+    return userIsHasAccess(this.page, req, res, next);
   }
 }
 
