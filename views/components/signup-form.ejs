@@ -36,51 +36,17 @@
       In order to answer all questions, you'll have to read the
       <a href="#rules">server rules</a>
     </p>
-    <div class="control">
-      <p class="mb-2 mt-4 title is-size-6">You are being arrested, you..</p>
-      <p><label class="radio">
-        <input type="radio" name="answer-1" value="1">
-        ... quit out of the game.
-      </label></p>
-      <p><label class="radio">
-        <input type="radio" name="answer-1" value="2">
-        ... complain in OOC to get out of it.
-      </label></p>
-      <p><label class="radio">
-        <input type="radio" name="answer-1" value="3">
-        ... roleplay it as necessary.
-      </label></p>
-    </div>
-    <div class="control">
-      <p class="mb-2 mt-4 title is-size-6">What is the right thing to do if someone rams your car?</p>
-      <p><label class="radio">
-        <input type="radio" name="answer-2" value="1">
-        RP the car crash.
-      </label></p>
-      <p><label class="radio">
-        <input type="radio" name="answer-2" value="2">
-        Get out and shoot him to death.
-      </label></p>
-      <p><label class="radio">
-        <input type="radio" name="answer-2" value="3">
-        Keep driving.
-      </label></p>
-    </div>
-    <div class="control">
-      <p class="mb-2 mt-4 title is-size-6">You find a bug in the script. What do you do?</p>
-      <p><label class="radio">
-        <input type="radio" name="answer-3" value="1">
-        PM the admins IG about it.
-      </label></p>
-      <p><label class="radio">
-        <input type="radio" name="answer-3" value="2">
-        Abuse it. If the admins don't fix it you're allowed to.
-      </label></p>
-      <p><label class="radio">
-        <input type="radio" name="answer-3" value="3">
-        Report it on the bug-tracker.
-      </label></p>
-    </div>
+    <% for (let q of questions) { %>
+      <div class="control">
+        <p class="mb-2 mt-4 title is-size-6"><%= q.question %></p>
+        <% for (let a of q.answers) { %>
+          <p><label class="radio">
+            <input type="radio" name="<%= q.id %>" value="<%= a.id %>">
+            <%= a.text %>
+          </label></p>
+        <% } %>
+      </div>
+    <% } %>
     <hr>
     <div class="control">
       <label class="checkbox">

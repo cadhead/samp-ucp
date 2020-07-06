@@ -16,7 +16,7 @@ module.exports = app => {
   });
 
   app.use((err, req, res, next) => {
-    res.locals.message = err.message;
+    res.locals.message = err.stack;
 
     res.status(err.status || 500);
     res.render('error');
